@@ -1,0 +1,64 @@
+---
+title: "Analisis Descriptivo"
+output: pdf_document
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+##
+
+Datos en cuestión
+
+```{r}
+project_data <- read.delim("broadway-shows.txt")
+str(project_data)
+```
+
+
+
+### Información de recaudo
+
+### Medidas de tendencia central
+
+```{r}
+var(project_data$Gross..M.)
+sd(project_data$Gross..M.)
+```
+
+#### Medidas de dispersion
+
+```{r}
+summary(project_data$Gross..M.)
+```
+
+De aquí resulta inmediato que 
+* Los datos están un poco más dispersos entre los dos primeros cuartiles.
+* La mediana se aleja considerablemente de la media (48.7 millones).
+* No hay atípicos.
+
+```{r}
+par(mfrow= c(1,2))
+recaudo_hist <- hist(project_data$Gross..M.,main="Histograma de recaudo",xlab="Recaudo (millones de $)",ylab="frecuencia",ylim = c(0,10),breaks=6)
+recaudo_bp <- boxplot(project_data$Gross..M.,main="Diagrama de caja de recaudo",ylab="recaudo (millones de $")
+```
+
+Como se observo del resumen anterior, la dispersión en los datos entre los cuartiles extremos es casi la misma. 
+
+
+## Información de concurrencia
+
+## Semanas activas para las obras
+
+## Número de obras nuevas
+
+## Precio promedio de los tickets
+
+## Porcentaje de tickets que no se venden
+
+## Logaritmo de lo recaudado.
