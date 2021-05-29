@@ -11,6 +11,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
+Con este proyecto se busca hacer observaciones sobre los datos e interpretar resultados posteriores concernientes a una base de datos en particular. La misma ofrece información sobre lo ocurrido en las temporadas de Broadway entre los años 1984 y 2016. En particular , la base describe los siguientes ítems para cada año/temporada: 
+* Recaudación en millones de dólares 
+* Concurrencia total en miles de personas 
+* Suma de semanas en las que estuvieron activas todas las obras 
+* Número de obras nuevas 
+* Precio promedio del ticket 
+* Porcentaje de tickets que no se venden
+
+Más en concreto, se quieren utilizar distintas herramientas conceptuales de la estadística descriptiva e inferencial para realizar distintas pruebas sobre los datos recibidos, facilitar su comprensión y entender mejor qué nos dice la distribución de los datos de nuestra muestra sobre ellos, así como qué podemos deducir de las pruebas realizadas.
+
+Para alcanzar lo planteado se emplearán técnicas de estadística inferencial y descriptiva, **inserte técnicas concretas a usar en los distintos ejercicios**
+
+
 ##
 
 Datos en cuestión
