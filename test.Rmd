@@ -23,6 +23,17 @@ Más en concreto, se quieren utilizar distintas herramientas conceptuales de la 
 
 Para alcanzar lo planteado se emplearán técnicas de estadística inferencial y descriptiva, **inserte técnicas concretas a usar en los distintos ejercicios**
 
+## Joaquin Intro
+**Planteamiento del Problema**
+	Los espectáculos de Broadway han sido un medio de entrenamiento artístico que ha estado presente a lo largo de muchos años, con recaudaciones millonarias a lo largo de los años. Es claro el auge y desplazamiento que han generado los nuevos medios de entretenimiento, los cuales han tenido un crecimiento exponencial, atrayendo cada vez más y más espectadores. En base a esto, este proyecto tiene como objetivo explorar datos sobre los espectáculos de Broadway y analizar el comportamiento que ha tenido este medio artístico entre 1984 y 2016.
+**Objetivo General**
+Aplicar herramientas estadísticas para medir la transformación que han tenido los espectáculos de Broadway en el período 1984-2016.
+**Objetivos Específicos**
+Determinar datos sobre la población a estudiar por medio análisis estadístico.
+Examinar los resultados obtenidos a través de observaciones realizadas a los datos.
+Generar tablas y gráficas con la información obtenida.
+**Descripción de la Base de Datos**
+Los datos iniciales hacen referencia a elementos comunes del espectáculo como: el dinero recaudado, la concurrencia, las semanas de actividad, el año, las producciones nuevas así como los tickets que no se han vendido y el precio de cada uno.
 
 ##
 
