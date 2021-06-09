@@ -1,43 +1,53 @@
 ---
-title: "Analisis Descriptivo"
+title: "Análisis estadístico de base de datos broadway-shows"
 output: pdf_document
 ---
-
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+César Alfonso Rosario Escobar 15-11295
 
-Con este proyecto se busca hacer observaciones sobre los datos e interpretar resultados posteriores concernientes a una base de datos en particular. La misma ofrece información sobre lo ocurrido en las temporadas de Broadway entre los años 1984 y 2016. En particular , la base describe los siguientes ítems para cada año/temporada: 
-* Recaudación en millones de dólares 
-* Concurrencia total en miles de personas 
-* Suma de semanas en las que estuvieron activas todas las obras 
-* Número de obras nuevas 
-* Precio promedio del ticket 
-* Porcentaje de tickets que no se venden
+Giacomo Leonardo Tosone Ohep 14-11085
 
-Más en concreto, se quieren utilizar distintas herramientas conceptuales de la estadística descriptiva e inferencial para realizar distintas pruebas sobre los datos recibidos, facilitar su comprensión y entender mejor qué nos dice la distribución de los datos de nuestra muestra sobre ellos, así como qué podemos deducir de las pruebas realizadas.
+Joaquin Alejandro Yañez Moreno 17-10678
+
+Roimar Alejandro Flores López 17-10196
+
+
+### Planteamiento del Problema
+
+Los espectáculos de Broadway han sido un medio de entrenamiento artístico que ha estado presente a lo largo de muchos años, con recaudaciones millonarias a lo largo de los años. Es claro el auge y desplazamiento que han generado los nuevos medios de entretenimiento, los cuales han tenido un crecimiento exponencial, atrayendo cada vez más y más espectadores. 
+	
+En base a esto, este proyecto tiene como objetivo utilizar datos sobre los espectáculos de Broadway para analizar el comportamiento que ha tenido este medio entre 1984 y 2016.
+	
+### Objetivo General
+
+Aplicar herramientas estadísticas para medir la transformación que han tenido los espectáculos de Broadway en el período 1984-2016.
+
+### Objetivos Específicos
+
+- Determinar datos sobre la población a estudiar por medio de análisis estadístico.
+
+- Examinar los resultados obtenidos a través de observaciones realizadas a los datos.
+
+- Tabular y graficar cuanto sea necesario para justificar e ilustrar observaciones e inferencias sobre los datos presentados.
+
+### Descripción de la Base de Datos
+
+Los datos proporcionados consisten de información cualitativa referente a elementos comunes del espectáculo como: el dinero recaudado, la concurrencia, las semanas de actividad, el año, las producciones nuevas así como los tickets que no se han vendido y el precio de cada uno.
+
+### Metodología
 
 Para alcanzar lo planteado se emplearán técnicas de estadística inferencial y descriptiva, **inserte técnicas concretas a usar en los distintos ejercicios**
 
-## Joaquin Intro
-**Planteamiento del Problema**
-	Los espectáculos de Broadway han sido un medio de entrenamiento artístico que ha estado presente a lo largo de muchos años, con recaudaciones millonarias a lo largo de los años. Es claro el auge y desplazamiento que han generado los nuevos medios de entretenimiento, los cuales han tenido un crecimiento exponencial, atrayendo cada vez más y más espectadores. En base a esto, este proyecto tiene como objetivo explorar datos sobre los espectáculos de Broadway y analizar el comportamiento que ha tenido este medio artístico entre 1984 y 2016.
-**Objetivo General**
-Aplicar herramientas estadísticas para medir la transformación que han tenido los espectáculos de Broadway en el período 1984-2016.
-**Objetivos Específicos**
-Determinar datos sobre la población a estudiar por medio análisis estadístico.
-Examinar los resultados obtenidos a través de observaciones realizadas a los datos.
-Generar tablas y gráficas con la información obtenida.
-**Descripción de la Base de Datos**
-Los datos iniciales hacen referencia a elementos comunes del espectáculo como: el dinero recaudado, la concurrencia, las semanas de actividad, el año, las producciones nuevas así como los tickets que no se han vendido y el precio de cada uno.
 
-##
 
-Datos en cuestión
+# Análisis descriptivo
+
+## Datos en cuestión
 
 ```{r}
 project_data <- read.delim("broadway-shows.txt")
@@ -45,8 +55,7 @@ str(project_data)
 ```
 
 
-
-### Información de recaudo
+## Información de recaudo
 
 ### Medidas de tendencia central
 
@@ -55,7 +64,7 @@ var(project_data$Gross..M.)
 sd(project_data$Gross..M.)
 ```
 
-#### Medidas de dispersion
+### Medidas de dispersion
 
 ```{r}
 summary(project_data$Gross..M.)
@@ -86,3 +95,8 @@ Como se observo del resumen anterior, la dispersión en los datos entre los cuar
 ## Porcentaje de tickets que no se venden
 
 ## Logaritmo de lo recaudado.
+
+## 2. Realice un intervalo de confianza del 97% para la media de cada variable en estudio. Analice lo
+## obtenido.
+
+## 3. Pruebe, a un nivel de 0.05, que el promedio obras nuevas inferior a 40.
