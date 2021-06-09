@@ -77,8 +77,8 @@ De aquí resulta inmediato que
 
 ```{r}
 par(mfrow= c(1,2))
-recaudo_hist <- hist(project_data$Gross..M.,main="Histograma de recaudo",xlab="Recaudo (millones de $)",ylab="frecuencia",ylim = c(0,10),breaks=6)
-recaudo_bp <- boxplot(project_data$Gross..M.,main="Diagrama de caja de recaudo",ylab="recaudo (millones de $")
+recaudo_hist <- hist(project_data$Gross..M.,main="Histograma de recaudo",xlab="Recaudo (millones de $)",ylab="frecuencia de recaudo",ylim = c(0,10),breaks=6)
+recaudo_bp <- boxplot(project_data$Gross..M.,main="Diagrama de caja de recaudo",ylab="recaudo (millones de $)")
 ```
 
 Como se observo del resumen anterior, la dispersión en los datos entre los cuartiles extremos es casi la misma. 
@@ -105,8 +105,8 @@ summary(project_data$Attendance)
 
 ```{r}
 par(mfrow= c(1,2))
-recaudo_hist <- hist(project_data$Attendance,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
-recaudo_bp <- boxplot(project_data$Attendance,main="Diagrama de caja de ",ylab="label")
+recaudo_hist <- hist(project_data$Attendance,main="Histograma de concurrencia",xlab="miles de personas",ylab="frecuencia de la concurrencia")
+recaudo_bp <- boxplot(project_data$Attendance,main="Diagrama de caja de concurrencia",ylab="miles de personas")
 ```
 
 -- Añadir observaciones
@@ -132,8 +132,8 @@ summary(project_data$Playing.weeks)
 
 ```{r}
 par(mfrow= c(1,2))
-recaudo_hist <- hist(project_data$Playing.weeks,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
-recaudo_bp <- boxplot(project_data$Playing.weeks,main="Diagrama de caja de ",ylab="label")
+recaudo_hist <- hist(project_data$Playing.weeks,main="Histograma de Semanas activas",xlab="Semanas activas")
+recaudo_bp <- boxplot(project_data$Playing.weeks,main="Diagrama de caja de ",ylab="Semanasa activas")
 ```
 
 -- Añadir observaciones
@@ -159,8 +159,8 @@ summary(project_data$New.Productions)
 
 ```{r}
 par(mfrow= c(1,2))
-recaudo_hist <- hist(project_data$New.Productions,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
-recaudo_bp <- boxplot(project_data$New.Productions,main="Diagrama de caja de ",ylab="label")
+recaudo_hist <- hist(project_data$New.Productions,main="Histograma de # de obras nuevas",xlab="# de obras nuevas")
+recaudo_bp <- boxplot(project_data$New.Productions,main="Diagrama de caja de obras nuevas",ylab="# de obras nuevas")
 ```
 
 -- Añadir observaciones
@@ -186,8 +186,8 @@ summary(project_data$Mean.ticket)
 
 ```{r}
 par(mfrow= c(1,2))
-recaudo_hist <- hist(project_data$Mean.ticket,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
-recaudo_bp <- boxplot(project_data$Mean.ticket,main="Diagrama de caja de ",ylab="label")
+recaudo_hist <- hist(project_data$Mean.ticket,main="precio promedio de tickets",xlab="precio promedio de tickets")
+recaudo_bp <- boxplot(project_data$Mean.ticket,main="precio promedio de tickets",ylab="precio promedio de tickets")
 ```
 
 -- Añadir observaciones
@@ -213,8 +213,8 @@ summary(project_data$Pct.sold)
 
 ```{r}
 par(mfrow= c(1,2))
-recaudo_hist <- hist(project_data$Pct.sold,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
-recaudo_bp <- boxplot(project_data$Pct.sold,main="Diagrama de caja de ",ylab="label")
+recaudo_hist <- hist(project_data$Pct.sold,main="% de tickets no vendidos",xlab="% no vendido")
+recaudo_bp <- boxplot(project_data$Pct.sold,main="% de tickets no vendidos")
 ```
 
 -- Añadir observaciones
@@ -240,8 +240,8 @@ summary(project_data$LogGross)
 
 ```{r}
 par(mfrow= c(1,2))
-recaudo_hist <- hist(project_data$LogGross,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
-recaudo_bp <- boxplot(project_data$LogGross,main="Diagrama de caja de ",ylab="label")
+recaudo_hist <- hist(project_data$LogGross,main="Logaritmo de recaudo",xlab="Logaritmo")
+recaudo_bp <- boxplot(project_data$LogGross,main="Logaritmo")
 ```
 
 -- Añadir observaciones
@@ -255,6 +255,7 @@ obtenido.
 El tamaño de los datos es 33
 
 ## Información de recaudo (Millones de dólares)
+
 
 ## Información de concurrencia (miles de personas)
 
