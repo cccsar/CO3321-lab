@@ -86,17 +86,171 @@ Como se observo del resumen anterior, la dispersión en los datos entre los cuar
 
 ## Información de concurrencia
 
+### Medidas de tendencia central
+
+<!-- # ```{r} -->
+<!-- # var(project_data$) -->
+<!-- # sd(project_data$) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+### Medidas de dispersion
+
+<!-- # ```{r} -->
+<!-- # summary(project_data$Gross..M.) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+<!-- # ```{r} -->
+<!-- # par(mfrow= c(1,2)) -->
+<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
+<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
 ## Semanas activas para las obras
+
+### Medidas de tendencia central
+
+<!-- # ```{r} -->
+<!-- # var(project_data$) -->
+<!-- # sd(project_data$) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+### Medidas de dispersion
+
+<!-- # ```{r} -->
+<!-- # summary(project_data$Gross..M.) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+<!-- # ```{r} -->
+<!-- # par(mfrow= c(1,2)) -->
+<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
+<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
+<!-- # ``` -->
+
+-- Añadir observaciones
 
 ## Número de obras nuevas
 
+### Medidas de tendencia central
+
+<!-- # ```{r} -->
+<!-- # var(project_data$) -->
+<!-- # sd(project_data$) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+### Medidas de dispersion
+
+<!-- # ```{r} -->
+<!-- # summary(project_data$Gross..M.) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+<!-- # ```{r} -->
+<!-- # par(mfrow= c(1,2)) -->
+<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
+<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
 ## Precio promedio de los tickets
+
+### Medidas de tendencia central
+
+<!-- # ```{r} -->
+<!-- # var(project_data$) -->
+<!-- # sd(project_data$) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+### Medidas de dispersion
+
+<!-- # ```{r} -->
+<!-- # summary(project_data$Gross..M.) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+<!-- # ```{r} -->
+<!-- # par(mfrow= c(1,2)) -->
+<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
+<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
+<!-- # ``` -->
+
+-- Añadir observaciones
 
 ## Porcentaje de tickets que no se venden
 
+### Medidas de tendencia central
+
+<!-- # ```{r} -->
+<!-- # var(project_data$) -->
+<!-- # sd(project_data$) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+### Medidas de dispersion
+
+<!-- # ```{r} -->
+<!-- # summary(project_data$Gross..M.) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+<!-- # ```{r} -->
+<!-- # par(mfrow= c(1,2)) -->
+<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
+<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
 ## Logaritmo de lo recaudado.
+
+### Medidas de tendencia central
+
+<!-- # ```{r} -->
+<!-- # var(project_data$) -->
+<!-- # sd(project_data$) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+### Medidas de dispersion
+
+<!-- # ```{r} -->
+<!-- # summary(project_data$Gross..M.) -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+<!-- # ```{r} -->
+<!-- # par(mfrow= c(1,2)) -->
+<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
+<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
+<!-- # ``` -->
+
+-- Añadir observaciones
+
+# Intervalo de confianza
 
 ## 2. Realice un intervalo de confianza del 97% para la media de cada variable en estudio. Analice lo
 ## obtenido.
+
+# Prueba de bondad de ajuste
 
 ## 3. Pruebe, a un nivel de 0.05, que el promedio obras nuevas inferior a 40.
