@@ -55,7 +55,7 @@ str(project_data)
 ```
 
 
-## Información de recaudo
+## Información de recaudo (Millones de dólares)
 
 ### Medidas de tendencia central
 
@@ -84,30 +84,30 @@ recaudo_bp <- boxplot(project_data$Gross..M.,main="Diagrama de caja de recaudo",
 Como se observo del resumen anterior, la dispersión en los datos entre los cuartiles extremos es casi la misma. 
 
 
-## Información de concurrencia
+## Información de concurrencia (miles de personas)
 
 ### Medidas de tendencia central
 
-<!-- # ```{r} -->
-<!-- # var(project_data$) -->
-<!-- # sd(project_data$) -->
-<!-- # ``` -->
+```{r}
+ var(project_data$Attendance)
+ sd(project_data$Attendance)
+```
 
 -- Añadir observaciones
 
 ### Medidas de dispersion
 
-<!-- # ```{r} -->
-<!-- # summary(project_data$Gross..M.) -->
-<!-- # ``` -->
+```{r}
+summary(project_data$Attendance)
+```
 
 -- Añadir observaciones
 
-<!-- # ```{r} -->
-<!-- # par(mfrow= c(1,2)) -->
-<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
-<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
-<!-- # ``` -->
+```{r}
+par(mfrow= c(1,2))
+recaudo_hist <- hist(project_data$Attendance,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
+recaudo_bp <- boxplot(project_data$Attendance,main="Diagrama de caja de ",ylab="label")
+```
 
 -- Añadir observaciones
 
@@ -115,80 +115,80 @@ Como se observo del resumen anterior, la dispersión en los datos entre los cuar
 
 ### Medidas de tendencia central
 
-<!-- # ```{r} -->
-<!-- # var(project_data$) -->
-<!-- # sd(project_data$) -->
-<!-- # ``` -->
+```{r}
+var(project_data$Playing.weeks)
+sd(project_data$Playing.weeks)
+```
 
 -- Añadir observaciones
 
 ### Medidas de dispersion
 
-<!-- # ```{r} -->
-<!-- # summary(project_data$Gross..M.) -->
-<!-- # ``` -->
+```{r} 
+summary(project_data$Playing.weeks) 
+``` 
 
 -- Añadir observaciones
 
-<!-- # ```{r} -->
-<!-- # par(mfrow= c(1,2)) -->
-<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
-<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
-<!-- # ``` -->
+```{r}
+par(mfrow= c(1,2))
+recaudo_hist <- hist(project_data$Playing.weeks,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
+recaudo_bp <- boxplot(project_data$Playing.weeks,main="Diagrama de caja de ",ylab="label")
+```
 
 -- Añadir observaciones
 
-## Número de obras nuevas
+## Número de obras nuevas 
 
 ### Medidas de tendencia central
 
-<!-- # ```{r} -->
-<!-- # var(project_data$) -->
-<!-- # sd(project_data$) -->
-<!-- # ``` -->
+```{r}
+var(project_data$New.Productions)
+sd(project_data$New.Productions)
+```
 
 -- Añadir observaciones
 
 ### Medidas de dispersion
 
-<!-- # ```{r} -->
-<!-- # summary(project_data$Gross..M.) -->
-<!-- # ``` -->
+```{r}
+summary(project_data$New.Productions)
+```
 
 -- Añadir observaciones
 
-<!-- # ```{r} -->
-<!-- # par(mfrow= c(1,2)) -->
-<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
-<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
-<!-- # ``` -->
+```{r}
+par(mfrow= c(1,2))
+recaudo_hist <- hist(project_data$New.Productions,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
+recaudo_bp <- boxplot(project_data$New.Productions,main="Diagrama de caja de ",ylab="label")
+```
 
 -- Añadir observaciones
 
-## Precio promedio de los tickets
+## Precio promedio de los tickets (millones de dólares)
 
 ### Medidas de tendencia central
 
-<!-- # ```{r} -->
-<!-- # var(project_data$) -->
-<!-- # sd(project_data$) -->
-<!-- # ``` -->
+```{r}
+var(project_data$Mean.ticket)
+sd(project_data$Mean.ticket)
+```
 
 -- Añadir observaciones
 
 ### Medidas de dispersion
 
-<!-- # ```{r} -->
-<!-- # summary(project_data$Gross..M.) -->
-<!-- # ``` -->
+```{r}
+summary(project_data$Mean.ticket)
+```
 
 -- Añadir observaciones
 
-<!-- # ```{r} -->
-<!-- # par(mfrow= c(1,2)) -->
-<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
-<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
-<!-- # ``` -->
+```{r}
+par(mfrow= c(1,2))
+recaudo_hist <- hist(project_data$Mean.ticket,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
+recaudo_bp <- boxplot(project_data$Mean.ticket,main="Diagrama de caja de ",ylab="label")
+```
 
 -- Añadir observaciones
 
@@ -196,26 +196,26 @@ Como se observo del resumen anterior, la dispersión en los datos entre los cuar
 
 ### Medidas de tendencia central
 
-<!-- # ```{r} -->
-<!-- # var(project_data$) -->
-<!-- # sd(project_data$) -->
-<!-- # ``` -->
+```{r}
+var(project_data$Pct.sold)
+sd(project_data$Pct.sold)
+```
 
 -- Añadir observaciones
 
 ### Medidas de dispersion
 
-<!-- # ```{r} -->
-<!-- # summary(project_data$Gross..M.) -->
-<!-- # ``` -->
+```{r}
+summary(project_data$Pct.sold)
+```
 
 -- Añadir observaciones
 
-<!-- # ```{r} -->
-<!-- # par(mfrow= c(1,2)) -->
-<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
-<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
-<!-- # ``` -->
+```{r}
+par(mfrow= c(1,2))
+recaudo_hist <- hist(project_data$Pct.sold,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
+recaudo_bp <- boxplot(project_data$Pct.sold,main="Diagrama de caja de ",ylab="label")
+```
 
 -- Añadir observaciones
 
@@ -223,33 +223,51 @@ Como se observo del resumen anterior, la dispersión en los datos entre los cuar
 
 ### Medidas de tendencia central
 
-<!-- # ```{r} -->
-<!-- # var(project_data$) -->
-<!-- # sd(project_data$) -->
-<!-- # ``` -->
+```{r}
+var(project_data$LogGross)
+sd(project_data$LogGross)
+```
 
 -- Añadir observaciones
 
 ### Medidas de dispersion
 
-<!-- # ```{r} -->
-<!-- # summary(project_data$Gross..M.) -->
-<!-- # ``` -->
+```{r}
+summary(project_data$LogGross)
+```
 
 -- Añadir observaciones
 
-<!-- # ```{r} -->
-<!-- # par(mfrow= c(1,2)) -->
-<!-- # recaudo_hist <- hist(project_data$,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6) -->
-<!-- # recaudo_bp <- boxplot(project_data$,main="Diagrama de caja de ",ylab="label") -->
-<!-- # ``` -->
+```{r}
+par(mfrow= c(1,2))
+recaudo_hist <- hist(project_data$LogGross,main="Histograma de ",xlab="label",ylab="label",ylim = c(0,10),breaks=6)
+recaudo_bp <- boxplot(project_data$LogGross,main="Diagrama de caja de ",ylab="label")
+```
 
 -- Añadir observaciones
 
-# Intervalo de confianza
 
-## 2. Realice un intervalo de confianza del 97% para la media de cada variable en estudio. Analice lo
-## obtenido.
+# Intervalos de confianza
+
+Intervalo de confianza del 97% para la media de cada variable en estudio. Analice lo
+obtenido.
+
+El tamaño de los datos es 33
+
+## Información de recaudo (Millones de dólares)
+
+## Información de concurrencia (miles de personas)
+
+## Semanas activas para las obras
+
+## Número de obras nuevas
+
+## Precio promedio de los tickets
+
+## Porcentaje de tickets que no se venden
+
+## Logaritmo de lo recaudado.
+
 
 # Prueba de bondad de ajuste
 
