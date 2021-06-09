@@ -249,25 +249,63 @@ recaudo_bp <- boxplot(project_data$LogGross,main="Logaritmo")
 
 # Intervalos de confianza
 
-Intervalo de confianza del 97% para la media de cada variable en estudio. Analice lo
-obtenido.
-
-El tamaño de los datos es 33
+El tamaño de los datos es 33.
 
 ## Información de recaudo (Millones de dólares)
 
+```{r}
+t.test(project_data$Gross..M., conf.level = 0.97)$conf.int
+```
+
+-- Análisis
 
 ## Información de concurrencia (miles de personas)
 
+```{r}
+t.test(project_data$Attendance, conf.level = 0.97)$conf.int
+```
+
+-- Análisis
+
 ## Semanas activas para las obras
+
+```{r}
+t.test(project_data$Playing.weeks, conf.level = 0.97)$conf.int
+```
+
+-- Análisis
 
 ## Número de obras nuevas
 
+```{r}
+t.test(project_data$New.Productions, conf.level = 0.97)$conf.int
+```
+
+-- Análisis
+
 ## Precio promedio de los tickets
+
+```{r}
+t.test(project_data$Mean.ticket, conf.level = 0.97)$conf.int
+```
+
+-- Análisis
 
 ## Porcentaje de tickets que no se venden
 
+```{r}
+t.test(project_data$Pct.sold, conf.level = 0.97)$conf.int
+```
+
+-- Análisis
+
 ## Logaritmo de lo recaudado.
+
+```{r}
+t.test(project_data$LogGross, conf.level = 0.97)$conf.int
+```
+
+-- Análisis
 
 
 # Prueba de bondad de ajuste
