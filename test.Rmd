@@ -305,9 +305,44 @@ t.test(project_data$Pct.sold, conf.level = 0.97)$conf.int
 t.test(project_data$LogGross, conf.level = 0.97)$conf.int
 ```
 
--- Análisis
+-- Analisis
 
 
-# Prueba de bondad de ajuste
+# Análisis sobre el promedio de obras nuevas
 
-## 3. Pruebe, a un nivel de 0.05, que el promedio obras nuevas inferior a 40.
+Se realizan los calculos necesarios para obtener el estadistico de prueba y analizarlo en relación a la región de rechazo.
+
+Media y varianzas muestrales:
+```{r}
+act_mean <- mean(project_data$New.Productions)
+act_sd   <- sd(project_data$New.Productions)
+
+act_mean
+act_sd
+```
+
+Estimador de prueba:
+```{r}
+test_estimator <- (act_mean - 40)/act_sd
+test_estimator
+```
+
+Como se pide ver que la media sea menor a 40, se asume que es igual y la region de rechazo será de cola inferior (Z < z_alpha). Luego, se busca  el cuantil asociado a la probabilidad de 0.05 para una distribucion normal, y se comparan los resultados.
+```{r}
+alpha <- qnorm(0.05)
+
+alpha
+```
+
+Se observa  que el estadistico de prueba cae dentro de la región de rechazo. Por lo tanto hay suficiente evidencia para asumir que de hecho el promedio de obras nuevas se encuentra por debajo de 40.
+
+Ahora, se observa el p-valor asociado a nuestra prueba para profundizar nuestro análisis.
+```{r}
+p_val <- t.test(project_data$New.Productions,mu=40,alternative="less")
+p_val
+```
+
+De estos resultados se concluye que la prueba deberia tener una significancia menor al 0.06% para ser aceptada, lo quiere decir que en la práctica, siempre se rechazará la hipotesis nula.
+
+
+## 4. Realizar una prueba de bondad de ajuste para determinar si la variable Gross($M) tiene distribucion normal.
