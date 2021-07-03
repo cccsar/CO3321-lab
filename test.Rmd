@@ -345,4 +345,67 @@ p_val
 De estos resultados se concluye que la prueba deberia tener una significancia menor al 0.06% para ser aceptada, lo quiere decir que en la práctica, siempre se rechazará la hipotesis nula.
 
 
-## 4. Realizar una prueba de bondad de ajuste para determinar si la variable Gross($M) tiene distribucion normal.
+## Prueba chi-cuadrado para determinar si el recaudo se distribuye de forma normal
+
+Se parte de la hipotésis de que el recaudo en millones de dólares entre 1984 y 2016 tiene distribución normal. Además, el ajuste se basará en un nivel de 5%.
+
+Primero, se agrupan los datos en clases con tamaños convenientes:
+
+```{r}
+gross_hist <- hist(project_data$Gross..M.,plot=F,breaks=seq(0,1500,300))
+gross_hist
+```
+
+Se unen las dos últimas clases para cumplir la precondición de # de frecuencia para bondad de ajuste.
+
+
+
+```{r}
+gross_freqs <- c(8,7,7,11)
+gross_mids  <- c(150,450,750,1200)
+n <- sum( gross_freqs )
+
+```
+
+Ahora que se cuenta con los datos agrupados, se observa si se asimilan a una distribución normal.
+
+```{r}
+qqnorm(gross_freqs)
+qqline(gross_freqs)
+```
+
+El diagrama cuantil-cuantil indica que de hecho los datos no se asimilan a una distribución normal. Aún así se procede ahora a obtener valores para la media y varianza muestrales (cuyo calculo hace perder 2 grados de libertad).
+
+```{r}
+gross_grouped_mean <- sum(gross_freqs * gross_mids)/n
+
+rep_mean <- rep(gross_grouped_mean,4)
+gross_grouped_var   <- (sum(gross_freqs - rep_mean)^2)/(n-1)
+
+gross_grouped_sd    <- sqrt(gross_grouped_var)
+
+gross_grouped_mean
+gross_grouped_sd
+```
+
+
+Se calculan las probabilidades asociadas a cada clase:
+
+```{r}
+p1 <- pnorm(c(0,300,600,900),gross_grouped_mean,gross_grouped_sd)
+p2 <- pnorm(c(300,600,900,1500),gross_grouped_mean,gross_grouped_sd)
+class_probs <- p2-p1
+class_probs
+```
+
+Y por último se obtiene el estimador chi cuadrado necesario para analizar la región de rechazo.
+
+```{r}
+est_chisq <- sum( (gross_freqs - n*class_probs)^2/(n*class_probs) )
+chisq_alpha <- qchisq(0.95,1,lower.tail=F)
+
+est_chisq
+chisq_alpha
+```
+
+Para el nivel de significancia escogido, el estadístico chi-cuadrado indica que de hecho el recaudo en millones de dólares no cuenta con distribución normal. 
