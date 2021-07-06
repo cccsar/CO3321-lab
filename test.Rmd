@@ -95,7 +95,7 @@ Como se observo del resumen anterior, la dispersión en los datos entre los cuar
  sd(project_data$Attendance)
 ```
 
-Como podemos observar los shows tenían una asistencia media de 10473, valor que oscilaba principalmente entre 8326 y 12621 personas. Además, podemos observar que no hay presencia de datos extremas debido a que la diferencia entre la media y la mediana es pequeña.
+Como se puede observar los shows tenían una asistencia media de 10473, valor que oscilaba principalmente entre 8326 y 12621 personas. Además, no hay presencia de datos extremas debido a que la diferencia entre la media y la mediana es pequeña.
 
 ### Medidas de dispersion
 
@@ -104,7 +104,7 @@ summary(project_data$Attendance)
 IQR(project_data$Attendance)
 ```
 
-En este caso podemos encontrar un rango intercuartil de 4.04 lo que nos lleva a concluir que no hay una gran dispersión en el conjunto de datos.
+En este caso hay un rango intercuartil de 4.04 lo que lleva a concluir que no hay una gran dispersión en el conjunto de datos.
 
 ```{r}
 par(mfrow= c(1,2))
@@ -112,7 +112,7 @@ recaudo_hist <- hist(project_data$Attendance,main="Histograma de concurrencia",x
 recaudo_bp <- boxplot(project_data$Attendance,main="Diagrama de caja de concurrencia",ylab="miles de personas")
 ```
 
-De acuerdo a las gráficas podemos observar que la frecuencia mas alta se encuentra en el rango de las 11000 personas y la menor en el rango de las 6000.
+De acuerdo a las gráficas se observa que la frecuencia mas alta se encuentra en el rango de las 11000 personas y la menor en el rango de las 6000.
 
 ## Semanas activas para las obras
 
@@ -125,7 +125,7 @@ var(project_data$Playing.weeks)
 sd(project_data$Playing.weeks)
 ```
 
-Con respecto a la cantidad de semanas activas podemos observar una media de 1340 y una mediana de 1442, por lo que a primera vista no existe una presencia de valores atípicos.
+Con respecto a la cantidad de semanas activas se detalla una media de 1340 y una mediana de 1442, por lo que a primera vista no existe una presencia de valores atípicos.
 
 ### Medidas de dispersion
 
@@ -134,7 +134,7 @@ summary(project_data$Playing.weeks)
 IQR(project_data$Playing.weeks) 
 ``` 
 
-Para las semanas de actividad obtenemos un rango intercuartil de 400, podemos concluir que la 50% intermedio esta comprendido entre 1100 y 1500 lo que indica cierto nivel de dispersión.
+Para las semanas de actividad se obtuvo un rango intercuartil de 400, lo que señala que la 50% intermedio esta comprendido entre 1100 y 1500 lo que indica cierto nivel de dispersión.
 
 ```{r}
 par(mfrow= c(1,2))
@@ -142,26 +142,29 @@ recaudo_hist <- hist(project_data$Playing.weeks,main="Histograma de Semanas acti
 recaudo_bp <- boxplot(project_data$Playing.weeks,main="Diagrama de caja de ",ylab="Semanasa activas")
 ```
 
-De acuerdo a las gráficas podemos observar la poca frecuencia de elementos alrededor de la mediana, y que la mayoría de los datos se concentran a partir del tercer cuartil.
+De acuerdo a las gráficas se observa la poca frecuencia de elementos alrededor de la mediana, y que la mayoría de los datos se concentran a partir del tercer cuartil.
 
 ## Número de obras nuevas 
 
 ### Medidas de tendencia central
 
 ```{r}
+mean(project_data$New.Productions)
+median(project_data$New.Productions)
 var(project_data$New.Productions)
 sd(project_data$New.Productions)
 ```
 
--- Añadir observaciones
+El número de obras nuevas oscila entre 33 y 41 con una media de 37.36, cabe destacar que la media es prácticamente igual que la mediana, por lo que en este caso no hay valores extremos.
 
 ### Medidas de dispersion
 
 ```{r}
 summary(project_data$New.Productions)
+IQR(project_data$New.Productions)
 ```
 
--- Añadir observaciones
+En cuanto a la dispersion es claro que los cuantiles poseen distancias parecidas con un rango intercuartil de 5, lo que indica que los datos están concentrados en la zona central.
 
 ```{r}
 par(mfrow= c(1,2))
@@ -169,26 +172,29 @@ recaudo_hist <- hist(project_data$New.Productions,main="Histograma de # de obras
 recaudo_bp <- boxplot(project_data$New.Productions,main="Diagrama de caja de obras nuevas",ylab="# de obras nuevas")
 ```
 
--- Añadir observaciones
+Gracias a la gráficas se confirma la afirmación anterior dado que claramente los datos se encuentran principalmente en el centro.
 
 ## Precio promedio de los tickets (millones de dólares)
 
 ### Medidas de tendencia central
 
 ```{r}
+mean(project_data$Mean.ticket)
+median(project_data$Mean.ticket)
 var(project_data$Mean.ticket)
 sd(project_data$Mean.ticket)
 ```
 
--- Añadir observaciones
+En este caso se tiene una media de 61.65 con un rango de valores mucho mayor que va desde 36 hasta 87.
 
 ### Medidas de dispersion
 
 ```{r}
 summary(project_data$Mean.ticket)
+IQR(project_data$Mean.ticket)
 ```
 
--- Añadir observaciones
+Para el precio del ticket el rango intercuartil es bastante alto con 33.88 lo que indica una alta dispersión de los datos.
 
 ```{r}
 par(mfrow= c(1,2))
@@ -196,26 +202,27 @@ recaudo_hist <- hist(project_data$Mean.ticket,main="precio promedio de tickets",
 recaudo_bp <- boxplot(project_data$Mean.ticket,main="precio promedio de tickets",ylab="precio promedio de tickets")
 ```
 
--- Añadir observaciones
+En las gráfica se observa cierta uniformidad excluyendo el rango de los 40.
 
 ## Porcentaje de tickets que no se venden
 
 ### Medidas de tendencia central
 
 ```{r}
+mean(project_data$Pct.sold)
+median(project_data$Pct.sold)
 var(project_data$Pct.sold)
 sd(project_data$Pct.sold)
 ```
-
--- Añadir observaciones
 
 ### Medidas de dispersion
 
 ```{r}
 summary(project_data$Pct.sold)
+IQR(project_data$Pct.sold)
 ```
 
--- Añadir observaciones
+Hay una gran diferencia entre el mínimo y el primer cuartil con un rango intercuartil de 0.0033. Indica una concentración de los datos entre el tercer cuartil y el máximo.
 
 ```{r}
 par(mfrow= c(1,2))
@@ -223,26 +230,29 @@ recaudo_hist <- hist(project_data$Pct.sold,main="% de tickets no vendidos",xlab=
 recaudo_bp <- boxplot(project_data$Pct.sold,main="% de tickets no vendidos")
 ```
 
--- Añadir observaciones
+Se observa claramente la baja frecuencia de valores en la primera mitad de la gráfica y la alta concentración en la segunda mitad.
 
 ## Logaritmo de lo recaudado.
 
 ### Medidas de tendencia central
 
 ```{r}
+mean(project_data$LogGross)
+median(project_data$LogGross)
 var(project_data$LogGross)
 sd(project_data$LogGross)
 ```
 
--- Añadir observaciones
+Para el logaritmo de las ganancias se detalla poca diferencia entre la media y la mediana, por lo que no se indica presencia de valores extremos.
 
 ### Medidas de dispersion
 
 ```{r}
 summary(project_data$LogGross)
+IQR(project_data$LogGross)
 ```
 
--- Añadir observaciones
+La distancia entre los cuartiles de la primera mitad es mayor que los de la segunda mitad.
 
 ```{r}
 par(mfrow= c(1,2))
@@ -250,7 +260,7 @@ recaudo_hist <- hist(project_data$LogGross,main="Logaritmo de recaudo",xlab="Log
 recaudo_bp <- boxplot(project_data$LogGross,main="Logaritmo")
 ```
 
--- Añadir observaciones
+Respaldando la observación anterior se observa la concentración uniforme de los elementos a partir de la mitad de la gráfica.
 
 
 # Intervalos de confianza
