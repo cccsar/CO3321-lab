@@ -464,6 +464,7 @@ data_size <- length( project_data$Season )
 n_vars    <- length(project_data)
 var_names <- colnames(project_data)
 
+
 sample_result <- sample.split(project_data$Gross..M., SplitRatio = 4/5)
 
 train_size    <- round( data_size * 0.8 )
@@ -540,8 +541,8 @@ summary(mod_lgross_2)
 Esta vez se elimina también el intercepto. 
 
 ```{r}
-mod_lgross_3 <- lm(train_df$LogGross ~ train_df$Attendance + train_df$Playing.weeks 
-             + train_df$Mean.ticket + train_df$Pct.sold - 1)
+mod_lgross_3 <- lm(LogGross ~ Attendance + Playing.weeks 
+             + Mean.ticket + Pct.sold - 1, data=train_df)
 summary(mod_lgross_3)
 ```
 
@@ -566,8 +567,13 @@ Dados los niveles de significancia obtenidos para cada variable  y los valores a
 Se procede a predecir valores para el logaritmo del recaudo para el grupo de datos escogido para tal fin.
 
 ```{r}
-predict(mod_lgross_3, validate_df, interval="prediction")
+predicction <- predict(mod_lgross_3, validate_df, interval="prediction")
+predicction
 ```
 
+Se comparan entonces los valores ajustados por el modelo con los valores reales del 20% de los datos
 
-
+```{r}
+summary(validate_df$LogGross - predicction[,1])
+boxplot(validate_df$LogGross - predicction[,1])
+```
