@@ -6,6 +6,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+require(caTools)
 ```
 
 César Alfonso Rosario Escobar 15-11295
@@ -71,9 +72,10 @@ summary(project_data$Gross..M.)
 ```
 
 De aquí resulta inmediato que 
-* Los datos están un poco más dispersos entre los dos primeros cuartiles.
-* La mediana se aleja considerablemente de la media (48.7 millones).
-* No hay atípicos.
+* Los datos están un poco más dispersos entre los dos primeros cuartiles, así que hay una leve asimetría.
+* La mediana se aleja considerablemente de la media (48.7 millones), pero se sabe que esto se ve afectado por la
+  sensibilidad de la mediana a valores altos.
+* Si bien no hay valores atipicos el bigote superior está bastante alto.
 
 ```{r}
 par(mfrow= c(1,2))
@@ -379,8 +381,8 @@ Se unen las dos últimas clases para cumplir la precondición de # de frecuencia
 ```{r}
 gross_freqs <- c(8,7,7,11)
 gross_mids  <- c(150,450,750,1200)
-n <- sum( gross_freqs )
 
+n <- sum( gross_freqs )
 ```
 
 Ahora que se cuenta con los datos agrupados, se observa si se asimilan a una distribución normal.
@@ -395,10 +397,10 @@ El diagrama cuantil-cuantil indica que de hecho los datos no se asimilan a una d
 ```{r}
 gross_grouped_mean <- sum(gross_freqs * gross_mids)/n
 
-rep_mean <- rep(gross_grouped_mean,4)
-gross_grouped_var   <- (sum(gross_freqs - rep_mean)^2)/(n-1)
+rep_mean           <- rep(gross_grouped_mean,4)
+gross_grouped_var  <- (sum(gross_freqs - rep_mean)^2)/(n-1)
 
-gross_grouped_sd    <- sqrt(gross_grouped_var)
+gross_grouped_sd   <- sqrt(gross_grouped_var)
 
 gross_grouped_mean
 gross_grouped_sd
@@ -408,8 +410,12 @@ gross_grouped_sd
 Se calculan las probabilidades asociadas a cada clase:
 
 ```{r}
-p1 <- pnorm(c(0,300,600,900),gross_grouped_mean,gross_grouped_sd)
-p2 <- pnorm(c(300,600,900,1500),gross_grouped_mean,gross_grouped_sd)
+lower_bound <- c(0,300,600,900)
+upper_bound <- c(300,600,900,1500)
+
+p1 <- pnorm(lower_bound, gross_grouped_mean, gross_grouped_sd)
+p2 <- pnorm(upper_bound, gross_grouped_mean, gross_grouped_sd)
+
 class_probs <- p2-p1
 class_probs
 ```
@@ -418,10 +424,150 @@ Y por último se obtiene el estimador chi cuadrado necesario para analizar la re
 
 ```{r}
 est_chisq <- sum( (gross_freqs - n*class_probs)^2/(n*class_probs) )
-chisq_alpha <- qchisq(0.95,2)
+lim_rr    <- qchisq(0.95,2)
 
 est_chisq
-chisq_alpha
+lim_rr
 ```
 
-Para el nivel de significancia escogido, el estadístico chi-cuadrado indica que de hecho el recaudo en millones de dólares no cuenta con distribución normal. 
+El estadístico hallado no está en la región de rechazo, por lo que la evidencia sugiere que el recaudo en millones de dólares se distribuye normalmente. Esto concuerda con la simetría descrita en el boxplot, en la sección 1 sobre la dispersión de los datos del recaudo.
+
+Si se observa ahora el pvalor
+
+```{r}
+pchisq(est_chisq,2,lower.tail=F)
+```
+
+Es claro que es bastante alto, lo suficiente para aceptar la hipotesis de normalidad a cualquier nivel.
+
+
+# Gráficos de dispersión 
+
+```{r}
+pairs(project_data)
+```
+# Matriz de correlación
+
+```{r}
+cor(project_data)
+```
+
+## Muestreo de datos
+
+Se generaran dos nuevos conjuntos de datos, uno que contiene el 80% de los datos originales y otro el 20%.
+
+```{r}
+
+set.seed(101) 
+
+data_size <- length( project_data$Season )
+n_vars    <- length(project_data)
+var_names <- colnames(project_data)
+
+sample_result <- sample.split(project_data$Gross..M., SplitRatio = 4/5)
+
+train_size    <- round( data_size * 0.8 )
+validate_size <- round( data_size * 0.2 )
+
+train_df    <- data.frame( matrix( rep(0,train_size * n_vars), nrow = train_size) )
+validate_df <- data.frame( matrix( rep(0,validate_size * n_vars), nrow = validate_size))
+
+for (i in 1:n_vars) { 
+  train_df[i]    <- subset(project_data[i], sample_result == T) 
+  validate_df[i] <- subset(project_data[i], sample_result == F)
+}
+
+colnames(train_df)    <- var_names
+colnames(validate_df) <- var_names
+```
+
+
+# Modelo para el recaudo en millones de dólares
+
+Se buscará un buen modelo para el recaudo. Para esto se realizará una regresión paso a paso.
+
+El modelo inicial es:
+
+```{r}
+mod_gross_1 <- lm(train_df$Gross..M. ~ train_df$Attendance + train_df$Playing.weeks
+                  + train_df$New.Productions + train_df$Mean.ticket
+                  + train_df$Pct.sold)
+
+summary(mod_gross_1)
+```
+
+Se observa que la mayoría de las variables son significativas a casi cualquier nivel, a excepción de las nuevas producciones, que aun es significativa a un nivel aceptable. Se decide removerla para mejorar el modelo.
+
+```{r}
+mod_gross_2 <- lm(train_df$Gross..M. ~ train_df$Attendance + train_df$Playing.weeks
+                  + train_df$Mean.ticket + train_df$Pct.sold)
+
+summary(mod_gross_2)
+```
+Ahora todas las variables son significativas a casi cualquier nivel y la disminución en el R-cuadrado ajustado es despreciable.
+
+Se estudian ahora los residuos:
+```{r}
+par(mfrow=c(2,2))
+plot(mod_gross_2)
+```
+
++ Residuos vs Ajustados: Los datos no presentan tendencia alguna por lo que se garantiza la independencia.
++ QQplot: La mayoria de los datos se ajustan a la recta salvo 3 excepciones.
++ Escala-localización: Los datos se presentan como una nube asi que hay garantía de homocedasticidad.
++ Residuos vs Apalancamiento: El octavo dato parece estar ejerciendo una leve influencia sobre el resto.
+
+# Modelo para el logaritmo del recaudo en millones de dólares
+
+Se realizará ahora un modelo para el logaritmo del recaudo, que se comparará con el anterior. 
+
+De nuevo, se realiza una regresión paso a paso.
+
+```{r}
+mod_lgross_1 <- lm(train_df$LogGross ~ train_df$Attendance + train_df$Playing.weeks 
+            + train_df$New.Productions + train_df$Mean.ticket + train_df$Pct.sold)
+summary(mod_lgross_1)
+```
+
+Se elimina, de nuevo, la variable correspondiente a las nuevas producciones.
+
+```{r}
+mod_lgross_2 <- lm(train_df$LogGross ~ train_df$Attendance + train_df$Playing.weeks 
+             + train_df$Mean.ticket + train_df$Pct.sold)
+summary(mod_lgross_2)
+```
+
+Esta vez se elimina también el intercepto. 
+
+```{r}
+mod_lgross_3 <- lm(train_df$LogGross ~ train_df$Attendance + train_df$Playing.weeks 
+             + train_df$Mean.ticket + train_df$Pct.sold - 1)
+summary(mod_lgross_3)
+```
+
+En este caso se observa que todas las variables del modelo son significativas a cualquier nivel y que el R-cuadrado ajustado es de 1 , un valor bastante deseable.
+
+Se estudian ahora los residuos de este modelo.
+
+```{r}
+par(mfrow=c(2,2))
+plot(mod_lgross_3)
+```
+
++ Residuos vs Ajustados: No hay tendencia marcada, se garantiza independencia.
++ QQplot: Los residuos presentan normalidad, salvo 3 exepciones no demasiado alejadas.
++ Escala-Localización: Los datos observados no muestran tendencia, se garantiza homocedasticidad.
++ Residuos vs Apalancamiento: Ningún dato influencia la tendencia del resto en este modelo.
+
+Dados los niveles de significancia obtenidos para cada variable  y los valores asociados a los residuos en ambos modelos, se escoge estudiar el logaritmo del recaudo.
+
+# Prediccion del logaritmo del recaudo
+
+Se procede a predecir valores para el logaritmo del recaudo para el grupo de datos escogido para tal fin.
+
+```{r}
+predict(mod_lgross_3, validate_df, interval="prediction")
+```
+
+
+
