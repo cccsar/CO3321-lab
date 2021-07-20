@@ -402,7 +402,7 @@ Y por último se obtiene el estimador chi cuadrado necesario para analizar la re
 
 ```{r}
 est_chisq <- sum( (gross_freqs - n*class_probs)^2/(n*class_probs) )
-chisq_alpha <- qchisq(0.95,1,lower.tail=F)
+chisq_alpha <- qchisq(0.95,2)
 
 est_chisq
 chisq_alpha
