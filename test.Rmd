@@ -494,14 +494,14 @@ mod_gross_1 <- lm(Gross..M. ~ Attendance + Playing.weeks + New.Productions + Mea
 summary(mod_gross_1)
 ```
 
-Se observa que la mayoría de las variables son significativas a casi cualquier nivel, a excepción de las nuevas producciones, que aun es significativa a un nivel aceptable. Se decide removerla para mejorar el modelo.
+Se observa que la mayoría de las variables son significativas a casi cualquier nivel, a excepción de las nuevas producciones, que aun es significativa a un nivel aceptable. Se decide removerla para mejorar el modelo, pues lo observado en la matriz de correlación y el grafico de dispersión indica que no guarda relación con el recaudo.
 
 ```{r}
 mod_gross_2 <- lm(Gross..M. ~ Attendance + Playing.weeks + Mean.ticket + Pct.sold, data=train_df)
 
 summary(mod_gross_2)
 ```
-Ahora todas las variables son significativas a casi cualquier nivel y la disminución en el R-cuadrado ajustado es despreciable.
+Ahora todas las variables son significativas a casi cualquier nivel y la disminución en el R-cuadrado ajustado es despreciable. 
 
 Se estudian ahora los residuos:
 ```{r}
@@ -513,6 +513,7 @@ plot(mod_gross_2)
 + QQplot: La mayoria de los datos se ajustan a la recta salvo 3 excepciones. Esto concuerda con el resultado obtenido en la prueba de bondad de ajuste.
 + Escala-localización: Los datos se presentan como una nube asi que hay garantía de homocedasticidad.
 + Residuos vs Apalancamiento: El octavo dato parece estar ejerciendo una leve influencia sobre el resto.
+
 
 # Modelo para el logaritmo del recaudo en millones de dólares
 
@@ -536,8 +537,7 @@ summary(mod_lgross_2)
 Esta vez se elimina también el intercepto. 
 
 ```{r}
-mod_lgross_3 <- lm(LogGross ~ Attendance + Playing.weeks 
-             + Mean.ticket + Pct.sold - 1, data=train_df)
+mod_lgross_3 <- lm(LogGross ~ Attendance + Playing.weeks + Mean.ticket + Pct.sold - 1, data=train_df)
 summary(mod_lgross_3)
 ```
 
