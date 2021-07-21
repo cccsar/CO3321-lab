@@ -446,11 +446,14 @@ Es claro que es bastante alto, lo suficiente para aceptar la hipotesis de normal
 ```{r}
 pairs(project_data)
 ```
+En el grafico de dispersión podemos observar que existe relación entre las variables, a excepción de porcentaje de tickets que no se venden, y especialmente en el número de obras nuevas, donde no se ve ningún tipo de patrón.
+
 # Matriz de correlación
 
 ```{r}
 cor(project_data)
 ```
+De nuevo en la matriz de correlación podemos observar como se presentan valores altos en casi todos los campos, excepto en pct.sold y new.productions con valores por debajo de 0.65 con niveles de hasta aproximadamente 0.35.
 
 ## Muestreo de datos
 
@@ -514,7 +517,7 @@ plot(mod_gross_2)
 ```
 
 + Residuos vs Ajustados: Los datos no presentan tendencia alguna por lo que se garantiza la independencia.
-+ QQplot: La mayoria de los datos se ajustan a la recta salvo 3 excepciones.
++ QQplot: La mayoria de los datos se ajustan a la recta salvo 3 excepciones. Esto concuerda con el resultado obtenido en la prueba de bondad de ajuste.
 + Escala-localización: Los datos se presentan como una nube asi que hay garantía de homocedasticidad.
 + Residuos vs Apalancamiento: El octavo dato parece estar ejerciendo una leve influencia sobre el resto.
 
