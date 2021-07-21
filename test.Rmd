@@ -376,8 +376,6 @@ gross_hist
 
 Se unen las dos últimas clases para cumplir la precondición de # de frecuencia para bondad de ajuste.
 
-
-
 ```{r}
 gross_freqs <- c(8,7,7,11)
 gross_mids  <- c(150,450,750,1200)
@@ -392,18 +390,15 @@ qqnorm(gross_freqs)
 qqline(gross_freqs)
 ```
 
-El diagrama cuantil-cuantil indica que de hecho los datos no se asimilan a una distribución normal. Aún así se procede ahora a obtener valores para la media y varianza muestrales (cuyo calculo hace perder 2 grados de libertad).
+El diagrama cuantil-cuantil indica que de hecho los datos no se asimilan a una distribución normal. Aún así se procede ahora a obtener valores para la media y varianza muestrales, usando estadístico de máxima verosimilitud (cuyo calculo hace perder 2 grados de libertad)
 
 ```{r}
-gross_grouped_mean <- sum(gross_freqs * gross_mids)/n
+mle_mean <- sum( project_data$Gross..M. ) / n
+mle_var  <- sum( (project_data$Gross..M. - mle_mean)^2) / n
+best_sd  <- sqrt( mle_var )
 
-rep_mean           <- rep(gross_grouped_mean,4)
-gross_grouped_var  <- (sum(gross_freqs - rep_mean)^2)/(n-1)
-
-gross_grouped_sd   <- sqrt(gross_grouped_var)
-
-gross_grouped_mean
-gross_grouped_sd
+mle_mean
+best_sd
 ```
 
 
@@ -413,32 +408,31 @@ Se calculan las probabilidades asociadas a cada clase:
 lower_bound <- c(0,300,600,900)
 upper_bound <- c(300,600,900,1500)
 
-p1 <- pnorm(lower_bound, gross_grouped_mean, gross_grouped_sd)
-p2 <- pnorm(upper_bound, gross_grouped_mean, gross_grouped_sd)
+p1 <- pnorm(lower_bound, mle_mean, best_sd)
+p2 <- pnorm(upper_bound, mle_mean, best_sd )
 
-class_probs <- p2-p1
+class_probs <- p2 - p1
+
 class_probs
 ```
 
 Y por último se obtiene el estimador chi cuadrado necesario para analizar la región de rechazo.
 
 ```{r}
-est_chisq <- sum( (gross_freqs - n*class_probs)^2/(n*class_probs) )
 lim_rr    <- qchisq(0.95,2)
+est_chisq <- sum ( ((gross_freqs - n*new_class_probs)^2)/(n*new_class_probs))
 
 est_chisq
 lim_rr
 ```
 
-El estadístico hallado no está en la región de rechazo, por lo que la evidencia sugiere que el recaudo en millones de dólares se distribuye normalmente. Esto concuerda con la simetría descrita en el boxplot, en la sección 1 sobre la dispersión de los datos del recaudo.
+El estadístico hallado, si bien no está en la región de rechazo se aproxima bastante a ella. Esto sugiere que el recaudo en millones de dólares se distribuye normalmente y concuerda con la simetría descrita en el boxplot, en la sección 1 sobre la dispersión de los datos del recaudo.
 
-Si se observa ahora el pvalor
+Si se observa ahora el pvalor:
 
 ```{r}
 pchisq(est_chisq,2,lower.tail=F)
 ```
-
-Es claro que es bastante alto, lo suficiente para aceptar la hipotesis de normalidad a cualquier nivel.
 
 
 # Gráficos de dispersión 
@@ -460,16 +454,17 @@ Se generaran dos nuevos conjuntos de datos, uno que contiene el 80% de los datos
 
 set.seed(101) 
 
-data_size <- length( project_data$Season )
-n_vars    <- length(project_data)
+data_size <- length( project_data$Season ) 
+n_vars    <- length(project_data)          
 var_names <- colnames(project_data)
 
-
+# vector booleano que representa que la forma en la que se agruparan el 80% y el 20% restante.
 sample_result <- sample.split(project_data$Gross..M., SplitRatio = 4/5)
 
 train_size    <- round( data_size * 0.8 )
 validate_size <- round( data_size * 0.2 )
 
+# Nuevos dataframes que contendrán los datos para entrenamiento y validación 
 train_df    <- data.frame( matrix( rep(0,train_size * n_vars), nrow = train_size) )
 validate_df <- data.frame( matrix( rep(0,validate_size * n_vars), nrow = validate_size))
 
@@ -490,9 +485,8 @@ Se buscará un buen modelo para el recaudo. Para esto se realizará una regresi�
 El modelo inicial es:
 
 ```{r}
-mod_gross_1 <- lm(train_df$Gross..M. ~ train_df$Attendance + train_df$Playing.weeks
-                  + train_df$New.Productions + train_df$Mean.ticket
-                  + train_df$Pct.sold)
+mod_gross_1 <- lm(Gross..M. ~ Attendance + Playing.weeks + New.Productions + Mean.ticket
+                   + Pct.sold, data = train_df)
 
 summary(mod_gross_1)
 ```
@@ -500,8 +494,7 @@ summary(mod_gross_1)
 Se observa que la mayoría de las variables son significativas a casi cualquier nivel, a excepción de las nuevas producciones, que aun es significativa a un nivel aceptable. Se decide removerla para mejorar el modelo.
 
 ```{r}
-mod_gross_2 <- lm(train_df$Gross..M. ~ train_df$Attendance + train_df$Playing.weeks
-                  + train_df$Mean.ticket + train_df$Pct.sold)
+mod_gross_2 <- lm(Gross..M. ~ Attendance + Playing.weeks + Mean.ticket + Pct.sold, data=train_df)
 
 summary(mod_gross_2)
 ```
@@ -525,16 +518,15 @@ Se realizará ahora un modelo para el logaritmo del recaudo, que se comparará c
 De nuevo, se realiza una regresión paso a paso.
 
 ```{r}
-mod_lgross_1 <- lm(train_df$LogGross ~ train_df$Attendance + train_df$Playing.weeks 
-            + train_df$New.Productions + train_df$Mean.ticket + train_df$Pct.sold)
+mod_lgross_1 <- lm(LogGross ~ Attendance + Playing.weeks + New.Productions 
+                    + Mean.ticket + Pct.sold, data=train_df)
 summary(mod_lgross_1)
 ```
 
 Se elimina, de nuevo, la variable correspondiente a las nuevas producciones.
 
 ```{r}
-mod_lgross_2 <- lm(train_df$LogGross ~ train_df$Attendance + train_df$Playing.weeks 
-             + train_df$Mean.ticket + train_df$Pct.sold)
+mod_lgross_2 <- lm(LogGross ~ Attendance + Playing.weeks + Mean.ticket + Pct.sold, data=train_df)
 summary(mod_lgross_2)
 ```
 
