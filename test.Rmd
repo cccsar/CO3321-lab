@@ -52,7 +52,6 @@ Para alcanzar lo planteado se emplearán las siguientes técnicas de estadístic
 
 ```{r}
 project_data <- read.delim("broadway-shows.txt")
-str(project_data)
 ```
 
 
@@ -348,7 +347,6 @@ test_estimator
 Como se pide ver que la media sea menor a 40, se asume que es igual y la region de rechazo será de cola inferior (Z < z_alpha). Luego, se busca  el cuantil asociado a la probabilidad de 0.05 para una distribucion normal, y se comparan los resultados.
 ```{r}
 alpha <- qnorm(0.05)
-
 alpha
 ```
 
@@ -360,7 +358,7 @@ p_val <- t.test(project_data$New.Productions,mu=40,alternative="less")
 p_val
 ```
 
-De estos resultados se concluye que la prueba deberia tener una significancia menor al 0.06% para ser aceptada, lo quiere decir que en la práctica, siempre se rechazará la hipotesis nula.
+De estos resultados se concluye que la prueba deberia tener una significancia menor al 0.0006 para ser aceptada, lo quiere decir que en la práctica, siempre se rechazará la hipotesis nula.
 
 
 ## Prueba chi-cuadrado para determinar si el recaudo se distribuye de forma normal
