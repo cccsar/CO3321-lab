@@ -1,2 +1,2 @@
-# Proyecto-estadistica
-Proyecto para la materia CO3321
+# CO3321-lab
+Proyectos para la materia *Estadistica para ingenieros* - CO3321
